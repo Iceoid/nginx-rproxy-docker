@@ -16,10 +16,12 @@ ${SUDO} apt install docker.io -y;${SUDO} apt install docker-compose -y
 ${SUDO} usermod -aG docker $USER
 
 ### Files init ###
-${SUDO} ln -s /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem ${PWD}/certs/
-${SUDO} ln -s /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
-${SUDO} chmod -R 600 ${PWD}/certs
+${SUDO} cp -p /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem ${PWD}/certs/
+chmod 600 /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem ${PWD}/certs/
+
+${SUDO} cp -p /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
+chmod 600 /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
 
 ### Run nginx reverse proxy container
-docker-compose up -d
+#docker-compose up -d
 
