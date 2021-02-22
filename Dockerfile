@@ -14,7 +14,6 @@ COPY ./conf.d/ /etc/nginx/conf.d/
 
 COPY ./sites-available/ /etc/nginx/conf.d/sites-available/
 
-
 RUN ln -s /etc/nginx/conf.d/sites-available/* /etc/nginx/conf.d/sites-enabled/
 
 RUN systemctl reload nginx
