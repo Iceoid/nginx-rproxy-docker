@@ -1,4 +1,5 @@
-!certs/.gitkeep
+!/**/.gitkeep
+certs/*
 
 *.log
-certs/*
+
