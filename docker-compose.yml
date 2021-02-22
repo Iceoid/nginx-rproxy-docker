@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  docker_net:
+    external: true
+
 services:
   reverse-proxy:
     build: .
@@ -9,12 +13,10 @@ services:
     ports:
       - 80:80
       - 443:443
-#     volumes:
-#       - certs/:/etc/ssl/private/
-#       - conf.d/:/etc/nginx/conf.d/
-#       - sites-available/:/etc/nginx/conf.d/sites-available/
-
-# volumes:
-#   certs:
-#   conf.d:
-#   sites-available:
+    networks:
+      - docker_net
+    volumes:
+      - ${PWD}/certs/:/etc/ssl/private/
+      - ${PWD}/conf.d/:/etc/nginx/conf.d/
+      - ${PWD}/sites-available/:/etc/nginx/sites-available/
+      - ${PWD}/nginx.conf:/etc/nginx/nginx.conf

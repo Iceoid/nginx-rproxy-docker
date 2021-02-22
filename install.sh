@@ -24,5 +24,6 @@ ${SUDO} cp -p /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
 ${SUDO} chown $USER:$USER /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
 
 ### Run nginx reverse proxy container
+docker netword create docker_net
 #docker-compose up -d
 
