@@ -2,6 +2,7 @@
 
 ### VARS ###
 DOMAIN_NAME=mindlab.dev
+THISUSER=$USER
 SUDO=''
 
 if [[ $EUID -ne 0 ]]; then
@@ -17,10 +18,10 @@ ${SUDO} usermod -aG docker $USER
 
 ### Files init ###
 ${SUDO} cp -p /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem ${PWD}/certs/
-chmod 600 /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem ${PWD}/certs/
+${SUDO} chown $USER:$USER /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem ${PWD}/certs/
 
 ${SUDO} cp -p /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
-chmod 600 /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
+${SUDO} chown $USER:$USER /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem ${PWD}/certs/
 
 ### Run nginx reverse proxy container
 #docker-compose up -d
