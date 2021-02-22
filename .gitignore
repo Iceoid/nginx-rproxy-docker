@@ -1,5 +1,5 @@
-!/**/.gitkeep
 certs/*
-
 *.log
 
+### Empty folders (with .gitkeep)###
+!/**/.gitkeep
