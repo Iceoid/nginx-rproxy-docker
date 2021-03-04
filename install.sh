@@ -46,5 +46,5 @@ done
 
 ### Run nginx reverse proxy container
 docker network create docker_net
-#docker-compose up -d
+docker-compose up -d
 
