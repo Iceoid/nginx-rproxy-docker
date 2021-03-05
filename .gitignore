@@ -3,3 +3,21 @@ certs/*
 
 ### Empty folders (with .gitkeep)###
 !/**/.gitkeep
+
+### certs
+certs/*
+!certs/.gitkeep
+
+### conf.d
+conf.d/*
+!conf.d/certs.conf
+!conf.d/common_location.conf
+!conf.d/common.conf
+
+### sites-available
+sites-available/*
+!sites-available/redirect.conf
+
+### Test files
+test.sh
+test
