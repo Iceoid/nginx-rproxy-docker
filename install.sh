@@ -36,13 +36,13 @@ function transfer_certs() {
 }
 
 function create_conf_files() {
-   if [[ -z "${DOMAIN_NAME}" ]]; then
+   if [[ ! -z "${DOMAIN_NAME}" ]]; then
       # Make a copy of the default.conf file and modify it
       SITE_FILE=sites-available/${DOMAIN_NAME}.conf
       cp default/default.conf ${SITE_FILE}
 
       sed -i "s/127\.0\.0\.1/${DOMAIN_NAME}/" ${SITE_FILE}
-      sed -i "s/exemple\.com/${DOMAIN_NAME}/" ${SITE_FILE}
+      sed -i "s/exemple\.com/${ALL_DOMAIN_NAMES}/" ${SITE_FILE}
 
 
       # Create the certs conf file, pointing to the location of the certificates.
@@ -67,8 +67,7 @@ done
 
 transfer_certs
 get_domain_aliases
-
-
+create_conf_files
 
 ADD_DOMAIN=yes
 while [[ "${ADD_DOMAIN}" =~ ^([yY]|[yY][eE][sS])$ ]] ; do
@@ -76,6 +75,8 @@ while [[ "${ADD_DOMAIN}" =~ ^([yY]|[yY][eE][sS])$ ]] ; do
    if [[ "${ADD_DOMAIN}" =~ ^([yY]|[yY][eE][sS])$ ]]; then
       get_domain_name
       transfer_certs
+      get_domain_aliases
+      create_conf_files
    else
       break
    fi
